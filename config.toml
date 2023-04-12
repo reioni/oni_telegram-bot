@@ -1,0 +1,60 @@
+debug = true
+
+[general]
+text_history_ttl = 300 # optional, for how long to store user messages, default 5 minutes
+text_history_size = 10 # optional, how many messages from each user to keep
+
+[telegram]
+bot_token = "5805313384:AAF0MOrRLmLVf65-2fZxJZLYgQiauC6AU28"
+admin_id = 111 # optional, id of admin user who can whitelist and blacklist chats and users
+allowed_users = [123, 234] # optional, a list of users from which messages are allowed
+allowed_chats = [345, 456] # optional, a list of changes from which all messages are allowed
+
+[integrations]
+
+[integrations.openai]
+OPEN_AI_TOKEN = "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" # set it to enable OpenAI integration
+max_tokens = 1000 # max tokens to return by OpenAI text models, default 500
+[[integrations.openai.networks]]
+name = "completion"
+version = "text-davinci-003"
+command = "t" # Telegram command to trigger Text Completion requests
+type = "text"
+[[integrations.openai.networks]]
+name = "chat"
+version = "gpt-4"
+command = "c" # Telegram command to trigger ChatGPT requests
+type = "text"
+[[integrations.openai.networks]]
+name = "image"
+version = "dalle"
+command = "d" # Telegram command to trigger Dall-E requests
+type = "text"
+
+[integrations.replicate]
+REPLICATE_TOKEN = "c9bb4d43419a46641087451feee33738631a5c80" # set it to enable Replicate integration
+[[integrations.replicate.networks]]
+name = "tstramer/midjourney-diffusion"
+version = "436b051ebd8f68d23e83d22de5e198e0995357afef113768c20f0b6fcef23c8b"
+command = "m" # Telegram command to trigger Midjourney requests
+type = "image"
+[[integrations.replicate.networks]]
+name = "stability-ai/stable-diffusion"
+version = "f178fa7a1ae43a9a9af01b833b9d2ecf97b1bcb0acfd2b1c1c1c1c1c1c1c1c1c"
+command = "s" # Telegram command to trigger Stable Diffusion requests
+type = "image"
+[[integrations.replicate.networks]]
+name = "cjwbw/anything-v3.0"
+version = "f410ed4c6a0c3bf8b76747860b3a3c9e4c8b5a827a16eac9dd5ad9642edce9a2"
+command = "anything" # Telegram command to trigger requests to cjwbw/anything-v3.0
+type = "image"
+[[integrations.replicate.networks]]
+name = "cjwbw/portraitplus"
+version = "629a9fe82c7979c1dab323aedac2c03adaae2e1aecf6be278a51fde0245e20a4"
+command = "portraitplus" # Telegram command to trigger requests to cjwbw/portraitplus
+type = "image"
+[[integrations.replicate.networks]]
+name = "openai/whisper"
+version = "e39e354773466b955265e969568deb7da217804d8e771ea8c9cd0cef6591f8bc" # Telegram command to trigger requests to openai/whisper speech-to-text model
+command = "a"
+type = "audio"
